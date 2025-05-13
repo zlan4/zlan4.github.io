@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vShm3AiIRqDSNZfWIV2I6SNz9NQs7covhMLhsq7pzgynNdcq7cgZPL4N6s2J3f5IhO8EFn3mxAaM9f4/pubembed?start=true&loop=true&delayms=3000" frameborder="0" width="1440" height="839" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+		<script>
+			function refreshSlides() {
+				window.location.reload();
+			}
+			async function checkForRefresh() {
+				try {
+					const res = await fetch('https://script.google.com/macros/s/AKfycbxfNhl4Rjtn0UYSvLNT3VcIU_MpYCm1nC_Ab8PuyZPQtw8BiNSIjpMn9s7-QiWJfJSUlg/exec');
+					const text = await res.text();
+					if (text === 'true') {
+						refreshSlides();
+						await fetch('https://script.google.com/macros/s/AKfycbxfNhl4Rjtn0UYSvLNT3VcIU_MpYCm1nC_Ab8PuyZPQtw8BiNSIjpMn9s7-QiWJfJSUlg/exec?reset=true');
+					}
+				} catch (err) {
+					console.error("Error checking refresh status", err);
+				}
+			}
+			setInterval(function() {
+				checkForRefresh();
+			}, 60000);
+		</script>
+	</body>
+</html>
